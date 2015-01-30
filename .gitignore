@@ -1,0 +1,8 @@
+*.py[cod]
+*~
+
+# Virtualenv Folder
+ENV/
+
+# Created by create_bootstrap.py
+bootstrap.py

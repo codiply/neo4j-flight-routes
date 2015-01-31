@@ -51,3 +51,6 @@ If Neo4j is not running locally you need to change this line in `make_graph.py` 
 Then simply run
 
     python make_graph.py
+
+Note that this might take long time to run as I am inserting nodes one by one. For more efficient ways of importing CSV files via cypher have a look [here](http://neo4j.com/docs/stable/cypherdoc-importing-csv-files-with-cypher.html).
+

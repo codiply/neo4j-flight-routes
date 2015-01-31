@@ -62,14 +62,19 @@ def create_route_nodes(graph, sourcefile, airline_nodes, airport_nodes):
         reader = csv.DictReader(csvfile, fieldnames=route_fieldnames)
         for row in reader:
             node_properties = {p: row[p] for p in ['codeshare','stops','equipment']}
-            source_airport_node = airport_nodes[row['source_airport_id']]
-            destination_airport_node = airport_nodes[row['destination_airport_id']]
-            dist = get_distance(source_airport_node, destination_airport_node)
-            route_node = Node('Route', distance=dist, **node_properties)
-            graph.create(route_node)
-            graph.create(Relationship(route_node, 'FROM', source_airport_node)) 
-            graph.create(Relationship(route_node, 'TO', destination_airport_node))
-            graph.create(Relationship(route_node, 'OF', airline_nodes[row['airline_id']]))
+            source_airport_id = row['source_airport_id']
+            destination_airport_id = row['destination_airport_id']
+            if source_airport_id.isdigit() and destination_airport_id.isdigit():
+                source_airport_node = airport_nodes[source_airport_id]
+                destination_airport_node = airport_nodes[destination_airport_id]
+                dist = get_distance(source_airport_node, destination_airport_node)
+                route_node = Node('Route', distance=dist, **node_properties)
+                graph.create(route_node)
+                graph.create(Relationship(route_node, 'FROM', source_airport_node)) 
+                graph.create(Relationship(route_node, 'TO', destination_airport_node))
+                airline_id = row['airline_id']
+                if airline_id.isdigit():
+                    graph.create(Relationship(route_node, 'OF', airline_nodes[airline_id]))
 
 def main():
 

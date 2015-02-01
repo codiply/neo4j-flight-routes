@@ -54,3 +54,7 @@ Then simply run
 
 Note that this might take long time to run as I am inserting nodes one by one. For more efficient ways of importing CSV files via cypher have a look [here](http://neo4j.com/docs/stable/cypherdoc-importing-csv-files-with-cypher.html).
 
+More info
+----------
+
+For more details have a look at [this blog post](http://codiply.com/blog/flight-routes-graph-database-with-neo4j).
